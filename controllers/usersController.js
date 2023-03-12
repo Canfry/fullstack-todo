@@ -10,7 +10,7 @@ const generateToken = (id) => {
 };
 
 // REGISTER USER
-const registerUser = asyncHandler(async (req, res) => {
+export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {

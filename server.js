@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 
 import todos from './routes/todosRoutes.js';
+import users from './routes/usersRoutes.js';
 
 const app = express();
 dotenv.config();
@@ -19,5 +20,6 @@ app.get('/', (req, res) => {
   res.send('Hello from server');
 });
 app.use('/api/todos', todos);
+app.use('/api/users', users);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
