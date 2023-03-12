@@ -71,3 +71,15 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid credentials');
   }
 });
+
+// PROFILE PAGE
+
+export const profilePage = asyncHandler(async (req, res) => {
+  const { _id, name, email } = await Users.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email,
+  });
+});
