@@ -13,8 +13,7 @@ const todoSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['New', 'In progress', 'Completed'],
-      default: 'New',
+      require: [true, 'Please add a status'],
     },
   },
   {
