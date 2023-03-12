@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Todo app backend",
+  "main": "server.js",
+  "author": "Christophe Anfry",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
