@@ -25,7 +25,69 @@ export const createTodo = asyncHandler(async (req, res) => {
 });
 
 // GET SINGLE TODO
+export const getTodo = asyncHandler(async (req, res) => {
+  const todo = await Todos.findById(req.params.id);
+
+  if (!todo) {
+    res.status(400);
+    throw new Error('There is not todo');
+  }
+
+  res.status(200).json(todo);
+});
 
 // UPDATE TODO
+export const updateTodo = asyncHandler(async (req, res) => {
+  const todo = await Todos.findById(req.params.id);
+
+  if (!todo) {
+    res.status(400);
+    throw new Error('There is no todo');
+  }
+
+  const user = await Users.findById(req.user.id);
+
+  // CHECK IF USER
+  if (!user) {
+    res.send(400);
+    throw new Error('User not found');
+  }
+
+  // CHECK IF USER MATCHES THE TODO USER
+  if (todo.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  const updatedTodo = await Todos.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  res.status(200).json(updatedTodo);
+});
 
 // DELETE TODO
+export const deleteTodo = asyncHandler(async (req, res) => {
+  const todo = await Todos.findById(req.params.id);
+
+  if (!todo) {
+    res.status(400);
+    throw new Error('There is no todo');
+  }
+
+  const user = await Users.findById(req.user.id);
+
+  // CHECK IF USER
+  if (!user) {
+    res.send(400);
+    throw new Error('User not found');
+  }
+
+  // CHECK IF USER MATCHES THE TODO USER
+  if (todo.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  await Todos.findOneAndDelete(req.params.id);
+  res.status(200).json({ id: req.params.id });
+});
