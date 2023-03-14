@@ -12,6 +12,7 @@ I'm struggling with authentication so I'm happy to work on it and to complete th
 - localhost:5500/api/users > POST > Register user
 - localhost:5500/api/users/login > POST > Login user
 - localhost:5500/api/users/profile > GET > Profile page
+- localhost:5500/api/users/profile > PUT > Update User Info
 - localhost:5500/api/todos > GET > Get all todos
 - localhost:5500/api/todos > POST > create todos
 - localhost:5500/api/todos/:id > GET > Get single todo
