@@ -83,3 +83,17 @@ export const profilePage = asyncHandler(async (req, res) => {
     email,
   });
 });
+
+// UPDATE USER INFO
+export const updateUser = asyncHandler(async (req, res) => {
+  const user = await Users.findById(req.user.id);
+
+  if (!user) {
+    res.status(400);
+    throw new Error('User not found');
+  }
+  const updatedUser = await Users.findByIdAndUpdate(req.user.id, req.body, {
+    new: true,
+  });
+  res.status(200).json(updatedUser);
+});
