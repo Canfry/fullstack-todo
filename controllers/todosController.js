@@ -11,7 +11,7 @@ export const getTodos = asyncHandler(async (req, res) => {
 
 // CREATE TODO
 export const createTodo = asyncHandler(async (req, res) => {
-  if (!req.body.description && req.body.status) {
+  if (!req.body.description && !req.body.status) {
     res.status(400);
     throw new Error('Please add a description and a status');
   }
