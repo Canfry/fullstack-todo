@@ -39,6 +39,10 @@ export const getTodo = asyncHandler(async (req, res) => {
 // UPDATE TODO
 export const updateTodo = asyncHandler(async (req, res) => {
   const todo = await Todos.findById(req.params.id);
+  const updatedData = {
+    description: req.body.description,
+    status: req.body.status,
+  };
 
   if (!todo) {
     res.status(400);
@@ -59,9 +63,13 @@ export const updateTodo = asyncHandler(async (req, res) => {
     throw new Error('Not authorized');
   }
 
-  const updatedTodo = await Todos.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const updatedTodo = await Todos.findByIdAndUpdate(
+    req.params.id,
+    updatedData,
+    {
+      new: true,
+    }
+  );
   res.status(200).json(updatedTodo);
 });
 
